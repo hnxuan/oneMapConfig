@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "点选查询", "点选查询\点选查询.csproj", "{97A1CDEB-9C79-45E5-925C-FB0206BC0940}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "服务目录树", "服务目录树\服务目录树.csproj", "{9951D905-B406-4A18-BD06-879B0EF21ACD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97A1CDEB-9C79-45E5-925C-FB0206BC0940}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97A1CDEB-9C79-45E5-925C-FB0206BC0940}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97A1CDEB-9C79-45E5-925C-FB0206BC0940}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97A1CDEB-9C79-45E5-925C-FB0206BC0940}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9951D905-B406-4A18-BD06-879B0EF21ACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9951D905-B406-4A18-BD06-879B0EF21ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9951D905-B406-4A18-BD06-879B0EF21ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9951D905-B406-4A18-BD06-879B0EF21ACD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F229BD0-3E5B-46AB-9D51-1A2D35A6272B}
+	EndGlobalSection
+EndGlobal
