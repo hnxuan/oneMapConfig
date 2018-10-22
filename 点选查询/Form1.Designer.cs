@@ -51,6 +51,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.check_Btn = new System.Windows.Forms.Button();
             this.chineseLayerName = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // servicesText
@@ -197,15 +198,15 @@
             // 
             // configJsonUrl
             // 
-            this.configJsonUrl.Location = new System.Drawing.Point(121, 9);
+            this.configJsonUrl.Location = new System.Drawing.Point(112, 11);
             this.configJsonUrl.Name = "configJsonUrl";
-            this.configJsonUrl.Size = new System.Drawing.Size(216, 21);
+            this.configJsonUrl.Size = new System.Drawing.Size(201, 21);
             this.configJsonUrl.TabIndex = 16;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(343, 18);
+            this.label8.Location = new System.Drawing.Point(313, 18);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(125, 12);
             this.label8.TabIndex = 17;
@@ -213,14 +214,14 @@
             // 
             // checkConfigJsonUrl
             // 
-            this.checkConfigJsonUrl.Location = new System.Drawing.Point(467, 9);
+            this.checkConfigJsonUrl.Location = new System.Drawing.Point(441, 11);
             this.checkConfigJsonUrl.Name = "checkConfigJsonUrl";
             this.checkConfigJsonUrl.Size = new System.Drawing.Size(195, 21);
             this.checkConfigJsonUrl.TabIndex = 18;
             // 
             // idKeyWord
             // 
-            this.idKeyWord.Location = new System.Drawing.Point(729, 8);
+            this.idKeyWord.Location = new System.Drawing.Point(683, 11);
             this.idKeyWord.Name = "idKeyWord";
             this.idKeyWord.Size = new System.Drawing.Size(217, 21);
             this.idKeyWord.TabIndex = 19;
@@ -228,7 +229,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(668, 11);
+            this.label9.Location = new System.Drawing.Point(642, 18);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(41, 12);
             this.label9.TabIndex = 20;
@@ -236,11 +237,11 @@
             // 
             // check_Btn
             // 
-            this.check_Btn.Location = new System.Drawing.Point(965, 6);
+            this.check_Btn.Location = new System.Drawing.Point(906, 11);
             this.check_Btn.Name = "check_Btn";
-            this.check_Btn.Size = new System.Drawing.Size(75, 23);
+            this.check_Btn.Size = new System.Drawing.Size(61, 23);
             this.check_Btn.TabIndex = 21;
-            this.check_Btn.Text = "获取差异";
+            this.check_Btn.Text = "未配服务";
             this.check_Btn.UseVisualStyleBackColor = true;
             this.check_Btn.Click += new System.EventHandler(this.check_Btn_Click);
             // 
@@ -254,11 +255,22 @@
             this.chineseLayerName.Text = "只显示包含中文的图层名";
             this.chineseLayerName.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(973, 11);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(69, 23);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "已配比较";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1045, 689);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.chineseLayerName);
             this.Controls.Add(this.check_Btn);
             this.Controls.Add(this.label9);
@@ -314,6 +326,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button check_Btn;
         private System.Windows.Forms.CheckBox chineseLayerName;
+        private System.Windows.Forms.Button button1;
     }
 }
 
