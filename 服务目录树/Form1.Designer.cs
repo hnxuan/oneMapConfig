@@ -44,6 +44,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.zhengxu = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -137,9 +140,9 @@
             // 
             this.button2.Location = new System.Drawing.Point(554, 6);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(85, 23);
             this.button2.TabIndex = 10;
-            this.button2.Text = "获取";
+            this.button2.Text = "获取目录结构";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -188,11 +191,43 @@
             this.label6.TabIndex = 15;
             this.label6.Text = "注意:该结点顺序即叠加服务顺序";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(646, 6);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(85, 23);
+            this.button3.TabIndex = 16;
+            this.button3.Text = "获取未配服务";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(738, 6);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(85, 23);
+            this.button4.TabIndex = 17;
+            this.button4.Text = "已配服务检查";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(383, 37);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(179, 12);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "请在exe.config配置好token信息";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1318, 615);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.zhengxu);
             this.Controls.Add(this.label5);
@@ -234,6 +269,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox zhengxu;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label7;
     }
 }
 

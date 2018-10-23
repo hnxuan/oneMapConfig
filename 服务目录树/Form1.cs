@@ -12,6 +12,7 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Web;
 using System.Net;
+using System.Configuration;
 
 namespace 生成服务目录树
 {
@@ -238,10 +239,10 @@ namespace 生成服务目录树
                         opera.visible = Convert.ToBoolean(operationallayerList[operationallayerListIndex].visible);
                         opera.isOperationalLayer = Convert.ToBoolean(operationallayerList[operationallayerListIndex].isOperationalLayer);
                     }
-                    var layersObject = JObject.Parse(HttpApi(richTextBox1.Lines[i].Split(',')[1] + "?f=pjson"));
+                    var layersObject = JObject.Parse(HttpApi(richTextBox1.Lines[i].Split(',')[1] + "?f=pjson"+getToken(richTextBox1.Lines[i].Split(',')[1])));
                     if (layersObject["singleFusedMapCache"] == null)
                     {
-
+                        MessageBox.Show("请检查app.config中token信息是否填写正确");
                     }
                     else
                     {
@@ -642,6 +643,107 @@ namespace 生成服务目录树
                     item.classLabel = ur.classLabel + "#";
                     Print(item);
                 }
+        }
+        static string getToken(string url)
+        {
+            try
+            {
+                string key = url.Substring(0, url.LastIndexOf(':'));
+                var appSettings = ConfigurationManager.AppSettings;
+                string result = (appSettings[key] != null) ? "&token=" + appSettings[key] : "";
+                return result;
+            }
+            catch (ConfigurationErrorsException)
+            {
+                MessageBox.Show("读取AppSettings错误");
+                return "";
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Text = "";
+            richTextBox1.AppendText("#未在operationallayers节点配置的服务列表(请删除此行)"+  "\r\n");
+
+            var configJsonObject = JObject.Parse(HttpApi(configJsonUrl.Text));
+            var operationallayers = configJsonObject["map"]["operationallayers"];
+            var layerList = configJsonObject["map"]["layerList"];
+            for (int i = 0; i < layerList.Count(); i++)
+            {
+                if (Convert.ToBoolean(layerList[i]["isleaf"]))
+                {
+                    var ismatch = false;
+                    for (int j = 0; j < operationallayers.Count(); j++)
+                    {
+                        if (Convert.ToString(operationallayers[j]["label"])== Convert.ToString(layerList[i]["id"]))
+                        {
+                            ismatch = true;
+                            break;
+                        }
+                    }
+                    if (!ismatch)
+                    {
+                        richTextBox1.AppendText("##" + Convert.ToString(layerList[i]["name"]) + "~" + Convert.ToString(layerList[i]["id"]) + "," + Convert.ToString(layerList[i]["url"]) + "\r\n");
+                    }
+                }
+            }
+            richTextBox1.Text = richTextBox1.Text.Substring(0, richTextBox1.Text.Length - 1);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Text = "";
+            richTextBox1.AppendText("#在operationallayers节点已配置的服务信息错误列表(请删除此行)" + "\r\n");
+
+            var configJsonObject = JObject.Parse(HttpApi(configJsonUrl.Text));
+            var operationallayers = configJsonObject["map"]["operationallayers"];
+            var layerList = configJsonObject["map"]["layerList"];
+            for (int i = 0; i < layerList.Count(); i++)
+            {
+                if (Convert.ToBoolean(layerList[i]["isleaf"]))
+                {
+                    var ismatch = false;
+                    for (int j = 0; j < operationallayers.Count(); j++)
+                    {
+                        if (Convert.ToString(operationallayers[j]["label"]) == Convert.ToString(layerList[i]["id"]))
+                        {
+                            if (Convert.ToString(operationallayers[j]["url"]) == Convert.ToString(layerList[i]["url"]))
+                            {
+                                string type = "";
+                                var layersObject = JObject.Parse(HttpApi(Convert.ToString(operationallayers[j]["url"]) + "?f=pjson"+getToken(Convert.ToString(operationallayers[j]["url"]))));
+                                if (layersObject["singleFusedMapCache"] == null)
+                                {
+                                    MessageBox.Show("请检查app.config中token信息是否填写正确");
+                                }
+                                else
+                                {
+                                    bool isdynamic = Convert.ToBoolean(layersObject["singleFusedMapCache"]);
+                                    if (isdynamic)
+                                    {
+                                        type = "tiled";
+                                    }
+                                    else
+                                    {
+                                        type = "dynamic";
+                                    }
+                                }
+                                if (type== Convert.ToString(operationallayers[j]["type"]))
+                                {
+                                    ismatch = true;
+                                    break;
+                                }
+
+                            }
+
+                        }
+                    }
+                    if (!ismatch)
+                    {
+                        richTextBox1.AppendText("##" + Convert.ToString(layerList[i]["name"]) + "~" + Convert.ToString(layerList[i]["id"]) + "," + Convert.ToString(layerList[i]["url"]) + "\r\n");
+                    }
+                }
+            }
+            richTextBox1.Text = richTextBox1.Text.Substring(0, richTextBox1.Text.Length - 1);
         }
     }
 }

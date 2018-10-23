@@ -39,8 +39,6 @@
             this.unitKeyWord = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.layerNameKeyWord = new System.Windows.Forms.RichTextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tokenValue = new System.Windows.Forms.TextBox();
             this.isEnglish = new System.Windows.Forms.CheckBox();
             this.isKeyField = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -52,6 +50,7 @@
             this.check_Btn = new System.Windows.Forms.Button();
             this.chineseLayerName = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // servicesText
@@ -148,22 +147,6 @@
             this.layerNameKeyWord.Size = new System.Drawing.Size(369, 36);
             this.layerNameKeyWord.TabIndex = 10;
             this.layerNameKeyWord.Text = "底,等深面,政区面";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 51);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(401, 12);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Token（确认该token允许该本机IP直接访问,访问无需token的服务请清空）";
-            // 
-            // tokenValue
-            // 
-            this.tokenValue.Location = new System.Drawing.Point(403, 48);
-            this.tokenValue.Name = "tokenValue";
-            this.tokenValue.Size = new System.Drawing.Size(629, 21);
-            this.tokenValue.TabIndex = 12;
             // 
             // isEnglish
             // 
@@ -265,11 +248,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 46);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(179, 12);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "请在exe.config配置好token信息";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1045, 689);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.chineseLayerName);
             this.Controls.Add(this.check_Btn);
@@ -281,8 +274,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.isKeyField);
             this.Controls.Add(this.isEnglish);
-            this.Controls.Add(this.tokenValue);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.layerNameKeyWord);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.unitKeyWord);
@@ -314,8 +305,6 @@
         private System.Windows.Forms.RichTextBox unitKeyWord;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.RichTextBox layerNameKeyWord;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox tokenValue;
         private System.Windows.Forms.CheckBox isEnglish;
         private System.Windows.Forms.CheckBox isKeyField;
         private System.Windows.Forms.Label label7;
@@ -327,6 +316,7 @@
         private System.Windows.Forms.Button check_Btn;
         private System.Windows.Forms.CheckBox chineseLayerName;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label6;
     }
 }
 

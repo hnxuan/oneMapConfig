@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace 点选查询
 {
@@ -180,6 +181,22 @@ namespace 点选查询
             }
         }
 
+        static string getToken(string url)
+        {
+            try
+            {
+                string key = url.Substring(0, url.LastIndexOf(':'));
+                var appSettings = ConfigurationManager.AppSettings;
+                string result = (appSettings[key]!=null) ? "&token=" + appSettings[key] : "";
+                return result;
+            }
+            catch (ConfigurationErrorsException)
+            {
+                MessageBox.Show("读取AppSettings错误");
+                return "";
+            }
+        }
+
         private bool getLayerInfo(string service, ref layeInfo layeInf)
         {
 
@@ -187,11 +204,6 @@ namespace 点选查询
             bool isFilterLayerName = false, isFilterField = false, isFilterUnit = false;
             string[] layerName_wordArry = new string[] { "" }, field_wordArry = new string[] { "" }, Unit_wordArry = new string[] { "" };
 
-            string tokenVal = "";
-            if (!string.IsNullOrEmpty(tokenValue.Text))
-            {
-                tokenVal = "&token=" + tokenValue.Text;
-            }
             //过滤图层名
             isFilterLayerName = isFilter(ref layerName_wordArry, layerNameKeyWord.Text);
             //过滤字段名
@@ -211,7 +223,7 @@ namespace 点选查询
                 service = service.Substring(service.IndexOf("@") + 1);
             }
 
-            var layersObject = JObject.Parse(HttpApi(service + "?f=pjson" + tokenVal));
+            var layersObject = JObject.Parse(HttpApi(service + "?f=pjson" + getToken(service)));
 
             string lname = HttpUtility.UrlDecode(service.Split('/')[(service.Split('/').Length - 2)], System.Text.Encoding.UTF8);
 
@@ -232,13 +244,13 @@ namespace 点选查询
             //图层数
             if (layersObject["layers"] == null)
             {
-                MessageBox.Show("请检查服务(是否添加token)：" + layeInf.id + "@" + service);
+                MessageBox.Show("请检查app.config(是否添加token)：" + layeInf.id + "@" + service);
                 return false;
             }
             int layerNum = layersObject["layers"].Count();
             for (int j = 0; j < layerNum; j++)
             {
-                var layerObject = JObject.Parse(HttpApi(service + "//" + j + "?f=pjson" + tokenVal));
+                var layerObject = JObject.Parse(HttpApi(service + "//" + j + "?f=pjson" + getToken(service)));
 
                 string layerName = Convert.ToString(layerObject["name"]);
                 //判断是否过滤该图层
