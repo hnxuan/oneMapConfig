@@ -421,6 +421,11 @@ namespace 点选查询
                                     }
                                 }
                             }
+                            else
+                            {
+                                ismatch = false;
+                                break;
+                            }
                             if (!ismatch)
                             {
                                 break;
