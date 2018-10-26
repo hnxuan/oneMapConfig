@@ -242,7 +242,7 @@ namespace 生成服务目录树
                     var layersObject = JObject.Parse(HttpApi(richTextBox1.Lines[i].Split(',')[1] + "?f=pjson"+getToken(richTextBox1.Lines[i].Split(',')[1])));
                     if (layersObject["singleFusedMapCache"] == null)
                     {
-                        MessageBox.Show("请检查app.config中token信息是否填写正确");
+                        MessageBox.Show("请检查exe.config中token信息是否填写正确");
                     }
                     else
                     {
@@ -713,7 +713,7 @@ namespace 生成服务目录树
                                 var layersObject = JObject.Parse(HttpApi(Convert.ToString(operationallayers[j]["url"]) + "?f=pjson"+getToken(Convert.ToString(operationallayers[j]["url"]))));
                                 if (layersObject["singleFusedMapCache"] == null)
                                 {
-                                    MessageBox.Show("请检查app.config中token信息是否填写正确");
+                                    MessageBox.Show("请检查exe.config中token信息是否填写正确");
                                 }
                                 else
                                 {

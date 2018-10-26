@@ -244,7 +244,7 @@ namespace 点选查询
             //图层数
             if (layersObject["layers"] == null)
             {
-                MessageBox.Show("请检查app.config(是否添加token)：" + layeInf.id + "@" + service);
+                MessageBox.Show("请检查exe.config(是否添加token)：" + layeInf.id + "@" + service);
                 return false;
             }
             int layerNum = layersObject["layers"].Count();
