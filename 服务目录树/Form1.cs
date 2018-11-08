@@ -85,6 +85,7 @@ namespace 生成服务目录树
             richTextBox2.Text = "";
             richTextBox3.Text = "";
             string[] zhengxuArry = { "" };
+            List<operationallayer> operationallayer_result = new List<operationallayer>();
 
             //处理正序目录
             if (!string.IsNullOrEmpty(zhengxu.Text))
@@ -258,8 +259,16 @@ namespace 生成服务目录树
                                 opera.type = "dynamic";
                             }
                         }
-
-                        operaString = ConvertJsonString(JsonConvert.SerializeObject(opera));
+                        //检查是否重复存在相同operationallayer节点
+                        if (operationallayer_result.FindIndex(a => a.label == opera.label && a.url == opera.url) == -1)
+                        {
+                            operationallayer_result.Add(opera);
+                            operaString = ConvertJsonString(JsonConvert.SerializeObject(opera));
+                        }
+                        else
+                        {
+                            operaString = "";
+                        }
                     }
                     else
                     {
