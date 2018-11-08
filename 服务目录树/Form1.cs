@@ -85,7 +85,6 @@ namespace 生成服务目录树
             richTextBox2.Text = "";
             richTextBox3.Text = "";
             string[] zhengxuArry = { "" };
-            List<operationallayer> operationallayer_result = new List<operationallayer>();
 
             //处理正序目录
             if (!string.IsNullOrEmpty(zhengxu.Text))
@@ -223,45 +222,50 @@ namespace 生成服务目录树
                     writeString = ConvertJsonString(JsonConvert.SerializeObject(ser));
 
                     //生成operationallayer部分
-                    operationallayer opera = new operationallayer();
-                    opera.label = ser.id;
-                    opera.url = richTextBox1.Lines[i].Split(',')[1];
-                    opera.icon = "";
-                    opera.visible = false;
-                    opera.isOperationalLayer = false;
+                    //判断网址合法性
+                    if (System.Text.RegularExpressions.Regex.IsMatch(richTextBox1.Lines[i].Split(',')[1], @"[a-zA-z]+://[^\s]*"))
+                    {
+                        operationallayer opera = new operationallayer();
+                        opera.label = ser.id;
+                        opera.url = richTextBox1.Lines[i].Split(',')[1];
+                        opera.icon = "";
+                        opera.visible = false;
+                        opera.isOperationalLayer = false;
 
-                    //在operationallayerList查找到以前的配置
-                    int operationallayerListIndex = operationallayerList.FindIndex(a => a.label == ser.id);
-                    if (operationallayerListIndex != -1)
-                    {
-                        opera.type = Convert.ToString(operationallayerList[operationallayerListIndex].type);
-                        opera.icon = Convert.ToString(operationallayerList[operationallayerListIndex].icon);
-                        opera.visible = Convert.ToBoolean(operationallayerList[operationallayerListIndex].visible);
-                        opera.isOperationalLayer = Convert.ToBoolean(operationallayerList[operationallayerListIndex].isOperationalLayer);
-                    }
-                    var layersObject = JObject.Parse(HttpApi(richTextBox1.Lines[i].Split(',')[1] + "?f=pjson"+getToken(richTextBox1.Lines[i].Split(',')[1])));
-                    if (layersObject["singleFusedMapCache"] == null)
-                    {
-                        MessageBox.Show("请检查exe.config中token信息是否填写正确");
-                    }
-                    else
-                    {
-                        bool isdynamic = Convert.ToBoolean(layersObject["singleFusedMapCache"]);
-                        if (isdynamic)
+                        //在operationallayerList查找到以前的配置
+                        int operationallayerListIndex = operationallayerList.FindIndex(a => a.label == ser.id);
+                        if (operationallayerListIndex != -1)
                         {
-                            opera.type = "tiled";
+                            opera.type = Convert.ToString(operationallayerList[operationallayerListIndex].type);
+                            opera.icon = Convert.ToString(operationallayerList[operationallayerListIndex].icon);
+                            opera.visible = Convert.ToBoolean(operationallayerList[operationallayerListIndex].visible);
+                            opera.isOperationalLayer = Convert.ToBoolean(operationallayerList[operationallayerListIndex].isOperationalLayer);
+                        }
+                        var layersObject = JObject.Parse(HttpApi(richTextBox1.Lines[i].Split(',')[1] + "?f=pjson" + getToken(richTextBox1.Lines[i].Split(',')[1])));
+                        if (layersObject["singleFusedMapCache"] == null)
+                        {
+                            MessageBox.Show("请检查exe.config中token信息是否填写正确");
                         }
                         else
                         {
-                            opera.type = "dynamic";
+                            bool isdynamic = Convert.ToBoolean(layersObject["singleFusedMapCache"]);
+                            if (isdynamic)
+                            {
+                                opera.type = "tiled";
+                            }
+                            else
+                            {
+                                opera.type = "dynamic";
+                            }
                         }
-                    }
 
-                    if (operationallayer_result.FindIndex(a=>a.label==opera.label&&a.url==opera.url)==-1)
-                    {
-                        operationallayer_result.Add(opera);
                         operaString = ConvertJsonString(JsonConvert.SerializeObject(opera));
                     }
+                    else
+                    {
+                        operaString = "";
+                    }
+
                 }
                 //目录
                 else
