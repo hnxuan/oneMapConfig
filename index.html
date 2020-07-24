@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>开始答题</title>
+</head>
+<style>
+    div {
+        width: 100%;
+        text-align:center;
+    }
+
+    .layui-btn {
+        display: inline-block;
+        height: 38px;
+        line-height: 38px;
+        padding: 0 18px;
+        background-color: #009688;
+        color: #fff;
+        white-space: nowrap;
+        text-align: center;
+        font-size: 14px;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+    }
+</style>
+<body>
+
+    <div style="top: 30%;position: absolute;">
+        <h3>测评日期：2020年7月27日至8月2日。每天一套题，每套题共30道题。</h3>
+        <button type="button" class="layui-btn" id="myBtn">开始答题</button>
+    </div>
+
+    <script>
+        document.getElementById("myBtn").addEventListener("click", function () {
+            var d = new Date();
+            if (d.getFullYear() == 2020) {
+                if (d.getMonth() == 6) {
+                    switch (d.getDay()) {
+                        case 27:
+                            window.location.href = "https://ks.wjx.top/jq/85956819.aspx";
+                            break;
+                        case 28:
+                            window.location.href = "https://ks.wjx.top/jq/85995282.aspx";
+                            break;
+                        case 29:
+                            window.location.href = "https://ks.wjx.top/jq/85994343.aspx";
+                            break;
+                        case 30:
+                            window.location.href = "https://ks.wjx.top/jq/85994304.aspx";
+                            break;
+                        case 31:
+                            window.location.href = "https://ks.wjx.top/jq/85992598.aspx";
+                            break;
+                        default:
+                            alert("未到开考时间，请确认系统时间无误！！");
+                            window.location.href = "https://baidu.com";
+                    }
+                } else if (d.getMonth() == 7) {
+                    switch (d.getDay()) {
+                        case 1:
+                            window.location.href = "https://ks.wjx.top/jq/85992560.aspx";
+                            break;
+                        case 2:
+                            window.location.href = "https://ks.wjx.top/jq/86101056.aspx";
+                            break;
+                        default:
+                            alert("已过开考时间，请确认系统时间无误！！");
+                    }
+                } else {
+                    alert("请确认系统时间无误！！");
+                }
+            }
+        });
+    </script>
+</body>
+</html>
